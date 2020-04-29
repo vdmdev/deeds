@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: TODO tasks api
+  description: TODO tasks api
+  version: 1.0.0
+servers:
+  - url: 'https://127.0.0.1:8080/api/v1'
+paths:
+  /tasks:
+    post:
+      tags:
+        - task
+      summary: Creates a new task with given parameters
+      operationId: createTask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        200:
+          description: Task created
+        400:
+          description: Validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Task:
+      type: object
+      properties:
+        title:
+          type: string
+          required: true
+          maximum: 255
+        description:
+          type: string
+          required: true
+          maximum: 4096
+        dueDate:
+          type: string
+          format: 'date-time'
+          required: false
