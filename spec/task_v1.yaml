@@ -25,11 +25,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/DeedsError'
 
 components:
   schemas:
-    Error:
+    DeedsError:
       type: object
       properties:
         code:
